@@ -40,7 +40,7 @@ class PermissionUtil {
                     Snackbar.make(
                         fragment.requireView(),
                         rationale,
-                        BaseTransientBottomBar.LENGTH_LONG
+                        BaseTransientBottomBar.LENGTH_INDEFINITE
                     )
                         .setAction(fragment.requireContext().getString(R.string.allow)) {
                             // Request permission
@@ -79,7 +79,7 @@ class PermissionUtil {
                     Snackbar.make(
                         fragment.requireView(),
                         rationale,
-                        BaseTransientBottomBar.LENGTH_LONG
+                        BaseTransientBottomBar.LENGTH_INDEFINITE
                     )
                         .setAction(fragment.requireContext().getString(R.string.allow)) {
                             // Request permission

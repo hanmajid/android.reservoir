@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.state.WifiStateFragment">
 
@@ -11,43 +12,237 @@
             name="navController"
             type="androidx.navigation.NavController" />
 
+        <variable
+            name="isWifiEnabled"
+            type="Boolean" />
+
+        <variable
+            name="wifiState"
+            type="String" />
+
+        <variable
+            name="isPermissionGranted"
+            type="Boolean" />
+
+        <variable
+            name="isLocationEnabled"
+            type="Boolean" />
+
+        <variable
+            name="connectedWifi"
+            type="String" />
+
+        <variable
+            name="p2pSupportedStatus"
+            type="String" />
+
+        <variable
+            name="errorMessage"
+            type="String" />
+
     </data>
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/button_wifi_scan"
-                navController="@{navController}"
-                onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiScanFragment()}"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/wifi_scan" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <Button
-                android:id="@+id/button_wifi_p2p"
-                navController="@{navController}"
-                onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiP2pFragment()}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/wifi_p2p" />
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/wifi_status_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="0dp"
+                    app:strokeColor="@android:color/darker_gray"
+                    app:strokeWidth="1dp">
 
-            <Button
-                android:id="@+id/button_wifi_suggestion"
-                navController="@{navController}"
-                onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiSuggestionFragment()}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/wifi_suggestion" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
 
-        </LinearLayout>
+                        <ImageView
+                            android:id="@+id/wifi_icon"
+                            iconIf="@{isWifiEnabled}"
+                            iconIfFalse="@{@drawable/ic_baseline_wifi_off_24}"
+                            iconIfTrue="@{@drawable/ic_baseline_wifi_24}"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:contentDescription="@string/wifi_state"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:srcCompat="@drawable/ic_baseline_wifi_24" />
 
-    </ScrollView>
+
+                        <TextView
+                            android:id="@+id/connected_wifi_message"
+                            style="@style/TextAppearance.MaterialComponents.Caption"
+                            hidden="@{errorMessage.isEmpty()}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:gravity="center_horizontal"
+                            android:text="@{errorMessage}"
+                            android:textAlignment="center"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/wifi_icon"
+                            tools:text="Error:" />
+
+                        <TextView
+                            android:id="@+id/wifi_status_label"
+                            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/wifi_state"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/connected_wifi_message" />
+
+                        <TextView
+                            android:id="@+id/wifi_status"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{wifiState}"
+                            android:textColor="@{isWifiEnabled ? @color/colorSuccess : @color/colorError}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/wifi_status_label"
+                            tools:text="Enabling" />
+
+                        <TextView
+                            android:id="@+id/connected_wifi_label"
+                            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/connected_wifi"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/wifi_status" />
+
+                        <TextView
+                            android:id="@+id/connected_wifi_text"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{connectedWifi}"
+                            android:textColor="@{connectedWifi != `-` ? @color/colorSuccess : @color/colorError}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/connected_wifi_label"
+                            tools:text="hanmajid-wifi" />
+
+                        <TextView
+                            android:id="@+id/wifi_p2p_status_label"
+                            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/is_p2p_supported"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/connected_wifi_text" />
+
+                        <TextView
+                            android:id="@+id/wifi_p2p_status"
+                            style="@style/TextAppearance.MaterialComponents.Body1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{p2pSupportedStatus}"
+                            android:textColor="@{p2pSupportedStatus == @string/supported ? @color/colorSuccess : @color/colorError}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/wifi_p2p_status_label"
+                            tools:text="@string/not_supported" />
+
+                        <Button
+                            android:id="@+id/button_wifi_settings"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            hidden="@{isWifiEnabled}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/enable_wifi"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/wifi_p2p_status"
+                            tools:visibility="visible" />
+
+                        <Button
+                            android:id="@+id/button_permission_settings"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            hidden="@{isPermissionGranted}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/allow_location"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/button_wifi_settings"
+                            tools:visibility="visible" />
+
+                        <Button
+                            android:id="@+id/button_location_settings"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            hidden="@{isLocationEnabled}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/enable_location"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/button_permission_settings"
+                            tools:visibility="visible" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/features" />
+
+                <Button
+                    android:id="@+id/button_wifi_scan"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    navController="@{navController}"
+                    onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiScanFragment()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/wifi_scan"
+                    app:icon="@drawable/ic_baseline_perm_scan_wifi_24" />
+
+                <Button
+                    android:id="@+id/button_wifi_p2p"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    navController="@{navController}"
+                    onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiP2pFragment()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wifi_p2p"
+                    app:icon="@drawable/ic_baseline_people_outline_24" />
+
+                <Button
+                    android:id="@+id/button_wifi_suggestion"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    navController="@{navController}"
+                    onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiSuggestionFragment()}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/wifi_suggestion"
+                    app:icon="@drawable/ic_baseline_info_24" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>

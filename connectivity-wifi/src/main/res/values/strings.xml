@@ -2,8 +2,29 @@
     <string name="app_name">Connectivity Wi-Fi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="wifi_state">Wi-Fi State</string>
+
     <string name="wifi_p2p">Wi-Fi P2P</string>
     <string name="wifi_suggestion">Wi-Fi Suggestion</string>
     <string name="wifi_scan">Wi-Fi Scan</string>
+
+    <!-- Wi-Fi State -->
+    <string name="wifi_state">Wi-Fi State</string>
+    <string name="connected_wifi">Connected Wi-Fi</string>
+    <string name="is_p2p_supported">Is P2P Supported?</string>
+    <string name="supported">Supported</string>
+    <string name="not_supported">Not supported</string>
+    <string name="enable_wifi">Enable Wi-Fi</string>
+    <string name="allow_location">Allow Location</string>
+    <string name="enable_location">Enable Location</string>
+    <string name="features">Features</string>
+    <string name="wifi_state_error_api_level_register_network_callback">Require API level 21 or above to listen to connection changes.</string>
+    <string name="wifi_state_error_api_level_p2p_supported_status">Require API level 21 or above to check P2P support status.</string>
+    <string name="wifi_state_error_permission_denied">Location permission is needed to listen to connection changes.</string>
+    <string name="wifi_state_error_location_disabled">Location service must be enabled to listen to connection changes.</string>
+    <string name="wifi_state_location_permission_rationale">Location permission needed to see connected Wi-Fi info.</string>
+    <string name="wifi_state_disabled">Disabled</string>
+    <string name="wifi_state_disabling">Disabling</string>
+    <string name="wifi_state_enabled">Enabled</string>
+    <string name="wifi_state_enabling">Enabling</string>
+    <string name="wifi_state_unknown">Unknown</string>
 </resources>
