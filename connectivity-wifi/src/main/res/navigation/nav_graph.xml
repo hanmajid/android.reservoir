@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wifi_state_fragment">
+
+    <fragment
+        android:id="@+id/wifi_state_fragment"
+        android:name="com.hanmajid.android.reservoir.connectivity.wifi.ui.state.WifiStateFragment"
+        android:label="@string/wifi_state"
+        tools:layout="@layout/fragment_wifi_state">
+        <action
+            android:id="@+id/action_wifi_state_fragment_to_wifi_scan_fragment"
+            app:destination="@id/wifi_scan_fragment" />
+        <action
+            android:id="@+id/action_wifi_state_fragment_to_wifi_p2p_fragment"
+            app:destination="@id/wifi_p2p_fragment" />
+        <action
+            android:id="@+id/action_wifi_state_fragment_to_wifi_suggestion_fragment"
+            app:destination="@id/wifi_suggestion_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wifi_scan_fragment"
+        android:name="com.hanmajid.android.reservoir.connectivity.wifi.ui.scan.WifiScanFragment"
+        android:label="@string/wifi_scan"
+        tools:layout="@layout/fragment_wifi_scan" />
+    <fragment
+        android:id="@+id/wifi_p2p_fragment"
+        android:name="com.hanmajid.android.reservoir.connectivity.wifi.ui.p2p.WifiP2pFragment"
+        android:label="@string/wifi_p2p"
+        tools:layout="@layout/fragment_wifi_p2p" />
+    <fragment
+        android:id="@+id/wifi_suggestion_fragment"
+        android:name="com.hanmajid.android.reservoir.connectivity.wifi.ui.suggestion.WifiSuggestionFragment"
+        android:label="@string/wifi_suggestion"
+        tools:layout="@layout/fragment_wifi_suggestion" />
+</navigation>

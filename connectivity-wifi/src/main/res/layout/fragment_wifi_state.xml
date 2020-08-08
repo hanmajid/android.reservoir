@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.state.WifiStateFragment">
+
+    <data>
+
+        <import type="com.hanmajid.android.reservoir.connectivity.wifi.ui.state.WifiStateFragmentDirections" />
+
+        <variable
+            name="navController"
+            type="androidx.navigation.NavController" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_wifi_scan"
+                navController="@{navController}"
+                onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiScanFragment()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wifi_scan" />
+
+            <Button
+                android:id="@+id/button_wifi_p2p"
+                navController="@{navController}"
+                onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiP2pFragment()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wifi_p2p" />
+
+            <Button
+                android:id="@+id/button_wifi_suggestion"
+                navController="@{navController}"
+                onClickNavDirections="@{WifiStateFragmentDirections.actionWifiStateFragmentToWifiSuggestionFragment()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wifi_suggestion" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>
