@@ -27,7 +27,7 @@ class PermissionUtil {
         fun requestPermissionIfNeeded(
             fragment: Fragment,
             permission: String,
-            rationale: String,
+            rationale: String?,
             onResult: (Boolean?) -> Unit
         ) {
             if (allPermissionsGranted(fragment.requireContext(), arrayOf(permission))) {
@@ -35,7 +35,7 @@ class PermissionUtil {
             } else {
                 val provideRationale = fragment.shouldShowRequestPermissionRationale(permission)
 
-                if (provideRationale) {
+                if (provideRationale && rationale != null) {
                     Snackbar.make(
                         fragment.requireView(),
                         rationale,
@@ -65,16 +65,16 @@ class PermissionUtil {
         fun requestPermissionsIfNeeded(
             fragment: Fragment,
             permissions: Array<String>,
-            rationale: String,
+            rationale: String?,
             onResult: (Map<String, Boolean>?) -> Unit
         ) {
             if (allPermissionsGranted(fragment.requireContext(), permissions)) {
-                onResult(null)
+                onResult(mapOf("" to true))
             } else {
                 val provideRationale = permissions.any {
                     fragment.shouldShowRequestPermissionRationale(it)
                 }
-                if (provideRationale) {
+                if (provideRationale && rationale != null) {
                     Snackbar.make(
                         fragment.requireView(),
                         rationale,

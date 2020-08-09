@@ -5,21 +5,12 @@
 
     <data>
 
-        <import type="androidx.core.content.ContextCompat" />
-
         <variable
-            name="isConnected"
-            type="Boolean" />
-
-        <variable
-            name="scanResult"
-            type="android.net.wifi.ScanResult" />
-
+            name="suggestion"
+            type="com.hanmajid.android.reservoir.connectivity.wifi.ui.suggestion.MyWifiSuggestion" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        backgroundIf="@{isConnected}"
-        backgroundIfColor="@{@color/colorSuccessLight}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -65,7 +56,7 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{scanResult.SSID}"
+                android:text="@{suggestion.ssid}"
                 tools:text="SSID" />
 
             <LinearLayout
@@ -79,14 +70,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:text="@string/signal_strength" />
+                    android:text="@string/priority" />
 
                 <TextView
                     style="@style/TextAppearance.MaterialComponents.Body2"
-                    wifiSignalLevel="@{scanResult}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Good" />
+                    android:text="@{suggestion.priority.toString()}"
+                    tools:text="1" />
 
             </LinearLayout>
 
@@ -101,26 +92,72 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
                     android:layout_marginRight="4dp"
-                    android:text="@string/frequency" />
+                    android:text="@string/need_app_interaction" />
 
                 <TextView
                     style="@style/TextAppearance.MaterialComponents.Body2"
-                    wifiFrequency="@{scanResult}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    tools:text="2.4 GHz" />
+                    android:text="@{suggestion.isAppInteractionRequired ? @string/yes : @string/no}"
+                    tools:text="Yes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
-                    style="@style/TextAppearance.MaterialComponents.Caption"
-                    hidden="@{!isConnected}"
+                    style="@style/TextAppearance.MaterialComponents.Subtitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/connected" />
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="@string/has_password" />
+
+                <TextView
+                    style="@style/TextAppearance.MaterialComponents.Body2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@{suggestion.hasPassword ? @string/yes : @string/no}"
+                    tools:text="Yes" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/button_suggest"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/suggest" />
+
+                <Button
+                    android:id="@+id/button_remove"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/remove" />
 
             </LinearLayout>
 
         </LinearLayout>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

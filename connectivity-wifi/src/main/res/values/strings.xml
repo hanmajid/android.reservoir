@@ -7,6 +7,8 @@
     <string name="wifi_suggestion">Wi-Fi Suggestion</string>
     <string name="wifi_scan">Wi-Fi Scan</string>
     <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Wi-Fi State -->
     <string name="wifi_state">Wi-Fi State</string>
@@ -39,4 +41,27 @@
     <string name="wifi_scan_signal_level_good">Strong</string>
     <string name="wifi_scan_signal_level_very_good">Very Strong</string>
     <string name="wifi_scan_error_throttling">Try disabling Wi-Fi scanning throttling in developer options to scan Wi-Fi frequently.</string>
+
+    <!-- Wi-Fi Suggestion -->
+    <string name="has_password">Has Password:</string>
+    <string name="suggest">Suggest</string>
+    <string name="remove">Remove</string>
+    <string name="need_app_interaction">Need app interaction:</string>
+    <string name="priority">Priority:</string>
+    <string name="listener_status">Listener Status:</string>
+    <string name="event">Event:</string>
+    <string name="refresh_listener">Refresh Listener</string>
+    <string name="wifi_suggestion_error_api_level_register_broadcast_listener">Require API level 29 or above to listen to post connection Wi-Fi suggestions.</string>
+    <string name="wifi_suggestion_listener_error_permission_denied">Location permission is needed to listen to post connection Wi-Fi suggestions.</string>
+    <string name="wifi_suggestion_listener_error_location_disabled">Location service must be enabled to listen to post connection Wi-Fi suggestions.</string>
+    <string name="wifi_suggestion_success_add">%1$s is suggested!</string>
+    <string name="wifi_suggestion_success_remove">%1$s is removed!</string>
+    <string name="wifi_suggestion_error_internal">Error: Internal error :(</string>
+    <string name="wifi_suggestion_error_app_disallowed">Error: Please allow this app to control Wi-Fi</string>
+    <string name="wifi_suggestion_error_add_duplicate">Error: This suggestion is duplicate</string>
+    <string name="wifi_suggestion_error_add_exceeds_max_per_app">Error: Max suggestions is exceeded. Consider removing unused suggestions.</string>
+    <string name="wifi_suggestion_error_remove_invalid">Error: This suggestion doesn\'t exist.</string>
+    <string name="wifi_suggestion_error_permission_denied">Permission not granted</string>
+    <string name="wifi_suggestion_error_api_level">Wi-Fi suggestion need API level 29 or above :(</string>
+    <string name="wifi_suggestion_connected">A suggested Wi-Fi is connected!</string>
 </resources>
