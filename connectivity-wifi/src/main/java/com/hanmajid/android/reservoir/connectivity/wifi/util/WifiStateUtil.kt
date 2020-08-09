@@ -15,7 +15,7 @@ class WifiStateUtil {
             WifiManager.WIFI_STATE_ENABLED -> context.getString(R.string.wifi_state_enabled)
             WifiManager.WIFI_STATE_ENABLING -> context.getString(R.string.wifi_state_enabling)
             WifiManager.WIFI_STATE_UNKNOWN -> context.getString(R.string.wifi_state_unknown)
-            else -> ""
+            else -> "-"
         }
     }
 }

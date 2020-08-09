@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.hanmajid.android.reservoir.common.R
 
@@ -40,7 +39,7 @@ class PermissionUtil {
                     Snackbar.make(
                         fragment.requireView(),
                         rationale,
-                        BaseTransientBottomBar.LENGTH_INDEFINITE
+                        Snackbar.LENGTH_INDEFINITE
                     )
                         .setAction(fragment.requireContext().getString(R.string.allow)) {
                             // Request permission
@@ -79,7 +78,7 @@ class PermissionUtil {
                     Snackbar.make(
                         fragment.requireView(),
                         rationale,
-                        BaseTransientBottomBar.LENGTH_INDEFINITE
+                        Snackbar.LENGTH_INDEFINITE
                     )
                         .setAction(fragment.requireContext().getString(R.string.allow)) {
                             // Request permission

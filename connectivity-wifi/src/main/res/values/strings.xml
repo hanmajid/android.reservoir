@@ -6,6 +6,7 @@
     <string name="wifi_p2p">Wi-Fi P2P</string>
     <string name="wifi_suggestion">Wi-Fi Suggestion</string>
     <string name="wifi_scan">Wi-Fi Scan</string>
+    <string name="ok">OK</string>
 
     <!-- Wi-Fi State -->
     <string name="wifi_state">Wi-Fi State</string>
@@ -27,4 +28,15 @@
     <string name="wifi_state_enabled">Enabled</string>
     <string name="wifi_state_enabling">Enabling</string>
     <string name="wifi_state_unknown">Unknown</string>
+
+    <!-- Wi-Fi Scan -->
+    <string name="signal_strength">Signal strength:</string>
+    <string name="frequency">Frequency:</string>
+    <string name="connected">Connected</string>
+    <string name="wifi_scan_signal_level_very_bad">Very Weak</string>
+    <string name="wifi_scan_signal_level_bad">Weak</string>
+    <string name="wifi_scan_signal_level_average">Good</string>
+    <string name="wifi_scan_signal_level_good">Strong</string>
+    <string name="wifi_scan_signal_level_very_good">Very Strong</string>
+    <string name="wifi_scan_error_throttling">Try disabling Wi-Fi scanning throttling in developer options to scan Wi-Fi frequently.</string>
 </resources>

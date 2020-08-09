@@ -1,7 +1,9 @@
 package com.hanmajid.android.reservoir.connectivity.wifi.util
 
+import android.content.Context
 import android.net.wifi.ScanResult
 import android.net.wifi.WifiManager
+import com.hanmajid.android.reservoir.connectivity.wifi.R
 import com.hanmajid.android.reservoir.connectivity.wifi.WifiConstants.WIFI_SIGNAL_LEVEL_AVERAGE
 import com.hanmajid.android.reservoir.connectivity.wifi.WifiConstants.WIFI_SIGNAL_LEVEL_BAD
 import com.hanmajid.android.reservoir.connectivity.wifi.WifiConstants.WIFI_SIGNAL_LEVEL_GOOD
@@ -48,12 +50,12 @@ class WifiScanUtil {
         }
 
         @JvmStatic
-        fun getWifiSignalLevelDescription(levelNum: Int) = when (levelNum) {
-            WIFI_SIGNAL_LEVEL_VERY_BAD -> "Very Bad"
-            WIFI_SIGNAL_LEVEL_BAD -> "Bad"
-            WIFI_SIGNAL_LEVEL_AVERAGE -> "Average"
-            WIFI_SIGNAL_LEVEL_GOOD -> "Good"
-            WIFI_SIGNAL_LEVEL_VERY_GOOD -> "Very Good"
+        fun getWifiSignalLevelDescription(levelNum: Int, context: Context) = when (levelNum) {
+            WIFI_SIGNAL_LEVEL_VERY_BAD -> context.getString(R.string.wifi_scan_signal_level_very_bad)
+            WIFI_SIGNAL_LEVEL_BAD -> context.getString(R.string.wifi_scan_signal_level_bad)
+            WIFI_SIGNAL_LEVEL_AVERAGE -> context.getString(R.string.wifi_scan_signal_level_average)
+            WIFI_SIGNAL_LEVEL_GOOD -> context.getString(R.string.wifi_scan_signal_level_good)
+            WIFI_SIGNAL_LEVEL_VERY_GOOD -> context.getString(R.string.wifi_scan_signal_level_very_good)
             else -> "-"
         }
     }

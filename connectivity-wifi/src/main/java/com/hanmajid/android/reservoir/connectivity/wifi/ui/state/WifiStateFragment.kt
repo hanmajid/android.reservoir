@@ -62,7 +62,7 @@ class WifiStateFragment : Fragment() {
         setupBinding()
         // Setup connection and Wi-Fi state listeners
         setupWifiState()
-        // Intialize UI
+        // Initialize UI
         uiUpdateAll()
     }
 
@@ -74,18 +74,10 @@ class WifiStateFragment : Fragment() {
             uiUpdateAll()
         }
         binding.buttonWifiSettings.setOnClickListener {
-            contract.launch(
-                Intent(
-                    Settings.ACTION_WIFI_SETTINGS
-                )
-            )
+            contract.launch(Intent(Settings.ACTION_WIFI_SETTINGS))
         }
         binding.buttonLocationSettings.setOnClickListener {
-            contract.launch(
-                Intent(
-                    Settings.ACTION_LOCATION_SOURCE_SETTINGS
-                )
-            )
+            contract.launch(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
         }
         binding.buttonPermissionSettings.setOnClickListener {
             contract.launch(
