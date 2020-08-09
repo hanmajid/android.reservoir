@@ -8,7 +8,7 @@ import com.hanmajid.android.reservoir.common.util.PermissionUtil
 import com.hanmajid.android.reservoir.connectivity.wifi.R
 import com.hanmajid.android.reservoir.connectivity.wifi.WifiConstants.STATUS_NETWORK_SUGGESTIONS_ERROR_API_LEVEL
 import com.hanmajid.android.reservoir.connectivity.wifi.WifiConstants.STATUS_NETWORK_SUGGESTIONS_ERROR_PERMISSIONS
-import com.hanmajid.android.reservoir.connectivity.wifi.ui.suggestion.MyWifiSuggestion
+import com.hanmajid.android.reservoir.connectivity.wifi.data.MyWifiSuggestion
 
 class WifiSuggestionUtil {
 
@@ -23,7 +23,7 @@ class WifiSuggestionUtil {
             onError: (status: Int) -> Unit
         ) {
             changeWifiNetworkSuggestions(
-                WIFI_SUGGESTION_CHANGE_TYPE.ADD_SUGGESTION,
+                WifiSuggestionChangeType.ADD_SUGGESTION,
                 fragment,
                 wifiManager,
                 suggestions,
@@ -41,7 +41,7 @@ class WifiSuggestionUtil {
             onError: (status: Int) -> Unit
         ) {
             changeWifiNetworkSuggestions(
-                WIFI_SUGGESTION_CHANGE_TYPE.REMOVE_SUGGESTION,
+                WifiSuggestionChangeType.REMOVE_SUGGESTION,
                 fragment,
                 wifiManager,
                 suggestions,
@@ -52,7 +52,7 @@ class WifiSuggestionUtil {
 
         @JvmStatic
         private fun changeWifiNetworkSuggestions(
-            changeType: WIFI_SUGGESTION_CHANGE_TYPE,
+            changeType: WifiSuggestionChangeType,
             fragment: Fragment,
             wifiManager: WifiManager,
             suggestions: List<MyWifiSuggestion>,
@@ -65,16 +65,18 @@ class WifiSuggestionUtil {
                     REQUIRED_PERMISSIONS,
                     null
                 ) {
-                    val isGranted = it?.all {
-                        it.value
+                    val isGranted = it?.all { row ->
+                        row.value
                     }
                     if (isGranted == true) {
-                        val wifiSuggestions = suggestions.map { it.toNetworkSuggestion() }
+                        val wifiSuggestions = suggestions.map { suggestion ->
+                            suggestion.toNetworkSuggestion()
+                        }
                         when (changeType) {
-                            WIFI_SUGGESTION_CHANGE_TYPE.ADD_SUGGESTION -> {
+                            WifiSuggestionChangeType.ADD_SUGGESTION -> {
                                 onSuccess(wifiManager.addNetworkSuggestions(wifiSuggestions))
                             }
-                            WIFI_SUGGESTION_CHANGE_TYPE.REMOVE_SUGGESTION -> {
+                            WifiSuggestionChangeType.REMOVE_SUGGESTION -> {
                                 onSuccess(wifiManager.removeNetworkSuggestions(wifiSuggestions))
                             }
                         }
@@ -103,9 +105,9 @@ class WifiSuggestionUtil {
             else -> "-"
         }
 
-        val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CHANGE_WIFI_STATE)
+        private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CHANGE_WIFI_STATE)
 
-        enum class WIFI_SUGGESTION_CHANGE_TYPE {
+        enum class WifiSuggestionChangeType {
             ADD_SUGGESTION,
             REMOVE_SUGGESTION
         }

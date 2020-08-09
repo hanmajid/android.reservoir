@@ -13,6 +13,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import com.hanmajid.android.reservoir.connectivity.wifi.util.WifiScanUtil
 
+@Suppress("unused")
 class WifiScanBroadcastReceiver(
     lifecycleOwner: LifecycleOwner,
     val context: Context,

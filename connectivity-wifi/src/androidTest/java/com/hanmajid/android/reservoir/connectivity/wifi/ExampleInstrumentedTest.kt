@@ -3,22 +3,17 @@ package com.hanmajid.android.reservoir.connectivity.wifi
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewAction
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.hanmajid.android.reservoir.connectivity.wifi.ui.state.WifiStateFragment
 import com.hanmajid.android.reservoir.connectivity.wifi.ui.state.WifiStateFragmentDirections
-
+import org.junit.Assert.assertEquals
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
-import org.junit.Before
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 
@@ -42,8 +37,8 @@ class ExampleInstrumentedTest {
     fun init() {
         val scenario = launchFragmentInContainer(themeResId = R.style.AppTheme) {
             WifiStateFragment().also { fragment ->
-                fragment.viewLifecycleOwnerLiveData.observeForever { viewLifecyleOwner ->
-                    if (viewLifecyleOwner != null) {
+                fragment.viewLifecycleOwnerLiveData.observeForever { viewLifecycleOwner ->
+                    if (viewLifecycleOwner != null) {
                         Navigation.setViewNavController(fragment.requireView(), navController)
                     }
                 }

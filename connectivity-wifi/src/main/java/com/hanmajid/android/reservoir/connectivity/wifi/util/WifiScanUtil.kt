@@ -14,7 +14,7 @@ class WifiScanUtil {
 
     companion object {
         /**
-         * Requires [CHANGE_WIFI_STATE] and [ACCESS_FINE_LOCATION] permission.
+         * Requires CHANGE_WIFI_STATE and ACCESS_FINE_LOCATION permission.
          */
         @JvmStatic
         fun startScanning(
@@ -29,7 +29,7 @@ class WifiScanUtil {
         }
 
         /**
-         * Requires [ACCESS_WIFI_STATE] and [ACCESS_FINE_LOCATION] permission.
+         * Requires ACCESS_WIFI_STATE and ACCESS_FINE_LOCATION permission.
          */
         @JvmStatic
         fun getScanResults(wifiManager: WifiManager, distinctSSID: Boolean): List<ScanResult> {

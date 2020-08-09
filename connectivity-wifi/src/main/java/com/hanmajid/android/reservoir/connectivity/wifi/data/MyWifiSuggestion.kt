@@ -1,4 +1,4 @@
-package com.hanmajid.android.reservoir.connectivity.wifi.ui.suggestion
+package com.hanmajid.android.reservoir.connectivity.wifi.data
 
 import android.net.wifi.WifiNetworkSuggestion
 import android.os.Build

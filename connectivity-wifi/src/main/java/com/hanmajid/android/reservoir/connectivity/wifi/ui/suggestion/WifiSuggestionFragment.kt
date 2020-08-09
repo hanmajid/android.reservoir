@@ -16,6 +16,7 @@ import androidx.core.location.LocationManagerCompat
 import com.google.android.material.snackbar.Snackbar
 import com.hanmajid.android.reservoir.common.util.PermissionUtil
 import com.hanmajid.android.reservoir.connectivity.wifi.R
+import com.hanmajid.android.reservoir.connectivity.wifi.data.MyWifiSuggestion
 import com.hanmajid.android.reservoir.connectivity.wifi.databinding.FragmentWifiSuggestionBinding
 import com.hanmajid.android.reservoir.connectivity.wifi.util.WifiSuggestionUtil
 
@@ -105,14 +106,14 @@ class WifiSuggestionFragment : Fragment() {
                         uiShowSnackBarStatus(
                             it,
                             suggestion,
-                            WifiSuggestionUtil.Companion.WIFI_SUGGESTION_CHANGE_TYPE.ADD_SUGGESTION
+                            WifiSuggestionUtil.Companion.WifiSuggestionChangeType.ADD_SUGGESTION
                         )
                     },
                     {
                         uiShowSnackBarStatus(
                             it,
                             suggestion,
-                            WifiSuggestionUtil.Companion.WIFI_SUGGESTION_CHANGE_TYPE.ADD_SUGGESTION
+                            WifiSuggestionUtil.Companion.WifiSuggestionChangeType.ADD_SUGGESTION
                         )
                     }
                 )
@@ -126,31 +127,33 @@ class WifiSuggestionFragment : Fragment() {
                         uiShowSnackBarStatus(
                             it,
                             suggestion,
-                            WifiSuggestionUtil.Companion.WIFI_SUGGESTION_CHANGE_TYPE.REMOVE_SUGGESTION
+                            WifiSuggestionUtil.Companion.WifiSuggestionChangeType.REMOVE_SUGGESTION
                         )
                     },
                     {
                         uiShowSnackBarStatus(
                             it,
                             suggestion,
-                            WifiSuggestionUtil.Companion.WIFI_SUGGESTION_CHANGE_TYPE.REMOVE_SUGGESTION
+                            WifiSuggestionUtil.Companion.WifiSuggestionChangeType.REMOVE_SUGGESTION
                         )
                     }
                 )
             }
         )
         binding.recyclerView.adapter = adapter
-        val suggestion1 = MyWifiSuggestion(
-            ssid = "MF4M",
-            priority = 1,
-            wpa2Passphrase = "mfauzanmajid",
-            isAppInteractionRequired = true
-        )
-        val suggestion2 = MyWifiSuggestion(
-            ssid = "hanmajid-wifi-open",
-            priority = 2,
-            isAppInteractionRequired = false
-        )
+        val suggestion1 =
+            MyWifiSuggestion(
+                ssid = "hanmajid-wifi-password",
+                priority = 1,
+                wpa2Passphrase = "secret",
+                isAppInteractionRequired = true
+            )
+        val suggestion2 =
+            MyWifiSuggestion(
+                ssid = "hanmajid-wifi-open",
+                priority = 2,
+                isAppInteractionRequired = false
+            )
         val suggestions = listOf(suggestion1, suggestion2)
         adapter.submitList(suggestions)
     }
@@ -179,11 +182,11 @@ class WifiSuggestionFragment : Fragment() {
     private fun uiShowSnackBarStatus(
         status: Int,
         suggestion: MyWifiSuggestion,
-        type: WifiSuggestionUtil.Companion.WIFI_SUGGESTION_CHANGE_TYPE
+        type: WifiSuggestionUtil.Companion.WifiSuggestionChangeType
     ) {
         val message = when (status) {
             WifiManager.STATUS_NETWORK_SUGGESTIONS_SUCCESS -> {
-                if (type == WifiSuggestionUtil.Companion.WIFI_SUGGESTION_CHANGE_TYPE.ADD_SUGGESTION)
+                if (type == WifiSuggestionUtil.Companion.WifiSuggestionChangeType.ADD_SUGGESTION)
                     getString(R.string.wifi_suggestion_success_add, suggestion.ssid) else
                     getString(R.string.wifi_suggestion_success_remove, suggestion.ssid)
             }

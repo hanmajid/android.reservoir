@@ -7,7 +7,7 @@
 
         <variable
             name="suggestion"
-            type="com.hanmajid.android.reservoir.connectivity.wifi.ui.suggestion.MyWifiSuggestion" />
+            type="com.hanmajid.android.reservoir.connectivity.wifi.data.MyWifiSuggestion" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

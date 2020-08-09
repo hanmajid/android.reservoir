@@ -1,13 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.p2p.WifiP2pFragment">
+    tools:context=".ui.scan.WifiScanFragment">
 
-    <TextView
+    <data>
+
+        <variable
+            name="errorMessage"
+            type="String" />
+
+        <variable
+            name="isWifiEnabled"
+            type="Boolean" />
+
+        <variable
+            name="isPermissionGranted"
+            type="Boolean" />
+
+        <variable
+            name="isLocationEnabled"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/wifi_p2p" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                hidden="@{isWifiEnabled &amp;&amp; isPermissionGranted &amp;&amp; isLocationEnabled}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/TextAppearance.MaterialComponents.Caption"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="@{errorMessage}"
+                    android:textAlignment="center"
+                    tools:text="Error:" />
+
+                <Button
+                    android:id="@+id/button_wifi_settings"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    hidden="@{isWifiEnabled}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enable_wifi" />
+
+                <Button
+                    android:id="@+id/button_permission_settings"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    hidden="@{isPermissionGranted}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/allow_location" />
+
+                <Button
+                    android:id="@+id/button_location_settings"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    hidden="@{isLocationEnabled}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/enable_location" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                dividerItemDecorationVertical="@{true}"
+                hidden="@{!isWifiEnabled || !isPermissionGranted || !isLocationEnabled}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_wifi_suggestion"
+                tools:visibility="gone" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

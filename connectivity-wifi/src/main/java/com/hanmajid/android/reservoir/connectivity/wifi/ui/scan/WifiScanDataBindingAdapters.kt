@@ -4,6 +4,7 @@ import android.net.wifi.ScanResult
 import android.net.wifi.WifiManager
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.hanmajid.android.reservoir.connectivity.wifi.R
 import com.hanmajid.android.reservoir.connectivity.wifi.WifiConstants.WIFI_SIGNAL_LEVEL_VERY_GOOD
 import com.hanmajid.android.reservoir.connectivity.wifi.util.WifiScanUtil
 import kotlin.math.floor
@@ -25,7 +26,7 @@ fun setWifiFrequency(textView: TextView?, scanResult: ScanResult?) {
         scanResult?.let {
             val x = floor(it.frequency.toDouble() / 100)
             val freq = String.format("%.1f", x / 10)
-            text = "$freq GHz"
+            text = context.getString(R.string.wifi_scan_frequency, freq)
         }
     }
 }

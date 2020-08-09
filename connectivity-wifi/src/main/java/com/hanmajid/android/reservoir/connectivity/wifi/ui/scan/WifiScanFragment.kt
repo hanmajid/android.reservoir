@@ -11,19 +11,18 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.location.LocationManagerCompat
+import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.hanmajid.android.reservoir.common.util.PermissionUtil
 import com.hanmajid.android.reservoir.connectivity.wifi.R
 import com.hanmajid.android.reservoir.connectivity.wifi.databinding.FragmentWifiScanBinding
 import com.hanmajid.android.reservoir.connectivity.wifi.ui.state.NetworkChangesCallback
 import com.hanmajid.android.reservoir.connectivity.wifi.ui.state.WifiStateBroadcastListener
-import com.hanmajid.android.reservoir.connectivity.wifi.ui.state.WifiStateFragment
 import com.hanmajid.android.reservoir.connectivity.wifi.util.WifiScanUtil
 
 class WifiScanFragment : Fragment() {

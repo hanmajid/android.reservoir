@@ -11,6 +11,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 
+@Suppress("unused")
 class WifiSuggestionConnectedBroadcastListener(
     lifecycleOwner: LifecycleOwner,
     val context: Context,
