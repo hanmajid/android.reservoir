@@ -1,3 +1,4 @@
+include ':animation-transition'
 include ':common'
 include ':connectivity-wifi'
 rootProject.name = "Android Reservoir"
