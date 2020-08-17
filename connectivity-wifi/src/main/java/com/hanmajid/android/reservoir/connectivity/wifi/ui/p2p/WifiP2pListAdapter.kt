@@ -16,7 +16,8 @@ class WifiP2pListAdapter(
     private val onClickSend: () -> Unit,
     private val onClickReceive: () -> Unit,
     private val onClickConnect: (WifiP2pManager?, WifiP2pManager.Channel?, WifiP2pDevice) -> Unit,
-    private val onClickDisconnect: (WifiP2pManager?, WifiP2pManager.Channel?, WifiP2pDevice) -> Unit
+    private val onClickDisconnect: (WifiP2pManager?, WifiP2pManager.Channel?, WifiP2pDevice) -> Unit,
+    private val onClickCreateGroup: (WifiP2pManager?, WifiP2pManager.Channel?, WifiP2pDevice) -> Unit
 ) :
     ListAdapter<WifiP2pDevice, RecyclerView.ViewHolder>(WIFI_COMPARATOR) {
 
@@ -51,7 +52,8 @@ class WifiP2pListAdapter(
             onClickSend,
             onClickReceive,
             onClickConnect,
-            onClickDisconnect
+            onClickDisconnect,
+            onClickCreateGroup
         )
     }
 
@@ -72,17 +74,21 @@ class WifiP2pListAdapter(
             onClickSend: () -> Unit,
             onClickReceive: () -> Unit,
             onClickConnect: (WifiP2pManager?, WifiP2pManager.Channel?, WifiP2pDevice) -> Unit,
-            onClickDisconnect: (WifiP2pManager?, WifiP2pManager.Channel?, WifiP2pDevice) -> Unit
+            onClickDisconnect: (WifiP2pManager?, WifiP2pManager.Channel?, WifiP2pDevice) -> Unit,
+            onClickCreateGroup: (WifiP2pManager?, WifiP2pManager.Channel?, WifiP2pDevice) -> Unit
         ) {
             device?.apply {
                 binding.isGroupOwner = isGroupOwner
                 binding.device = this
-                binding.cardView.setOnClickListener {
+                binding.buttonConnect.setOnClickListener {
                     when (this.status) {
                         WifiConstants.WIFI_P2P_DEVICE_STATUS_AVAILABLE -> {
                             onClickConnect(manager, channel, this)
                         }
                     }
+                }
+                binding.buttonCreateGroup.setOnClickListener {
+                    onClickCreateGroup(manager, channel, device)
                 }
                 binding.buttonSend.setOnClickListener {
                     onClickSend()

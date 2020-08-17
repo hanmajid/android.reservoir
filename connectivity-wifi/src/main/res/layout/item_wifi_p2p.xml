@@ -20,7 +20,8 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_view"
+        backgroundIf="@{device.status == WifiConstants.WIFI_P2P_DEVICE_STATUS_CONNECTED}"
+        backgroundIfColor="@{@color/colorSuccessLight}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -92,6 +93,33 @@
                         android:layout_height="wrap_content"
                         android:text="@{WifiP2pUtil.getWifiP2PDeviceStatusDescription(device.status)}"
                         tools:text="Available" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    hidden="@{device.status == WifiConstants.WIFI_P2P_DEVICE_STATUS_CONNECTED}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/button_connect"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/connect" />
+
+                    <Button
+                        android:id="@+id/button_create_group"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/create_group" />
 
                 </LinearLayout>
 

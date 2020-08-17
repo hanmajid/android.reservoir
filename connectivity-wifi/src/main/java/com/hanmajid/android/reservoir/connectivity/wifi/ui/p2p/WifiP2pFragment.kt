@@ -7,6 +7,7 @@ import android.net.Uri
 import android.net.wifi.WifiManager
 import android.net.wifi.p2p.WifiP2pConfig
 import android.net.wifi.p2p.WifiP2pManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
@@ -25,6 +26,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.hanmajid.android.reservoir.common.util.PermissionUtil
 import com.hanmajid.android.reservoir.connectivity.wifi.R
 import com.hanmajid.android.reservoir.connectivity.wifi.databinding.FragmentWifiP2pBinding
+import com.hanmajid.android.reservoir.connectivity.wifi.util.WifiP2pUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -227,7 +229,7 @@ class WifiP2pFragment : Fragment() {
                 // On click disconnect
                 MaterialAlertDialogBuilder(requireContext())
                     .setTitle(getString(R.string.wifi_p2p_disconnect, device.deviceName))
-                    .setNegativeButton(R.string.connect) { _, _ -> }
+                    .setNegativeButton(R.string.cancel) { _, _ -> }
                     .setPositiveButton(R.string.disconnect) { _, _ ->
                         manager?.removeGroup(channel, object : WifiP2pManager.ActionListener {
                             override fun onSuccess() {}
@@ -235,6 +237,37 @@ class WifiP2pFragment : Fragment() {
                         })
                     }
                     .show()
+            }, { manager, channel, _ ->
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    manager?.createGroup(
+                        channel!!,
+                        object : WifiP2pManager.ActionListener {
+                            override fun onSuccess() {
+                                manager.requestGroupInfo(
+                                    channel,
+                                    WifiP2pManager.GroupInfoListener { group ->
+                                        group?.let {
+                                            Log.wtf(TAG, it.toString())
+                                        }
+                                    })
+                            }
+
+                            override fun onFailure(reason: Int) {
+                                Log.wtf(
+                                    TAG,
+                                    "Failed: ${WifiP2pUtil.getWifiP2PFailureReason(reason)}"
+                                )
+                            }
+
+                        }
+                    )
+                } else {
+                    Snackbar.make(
+                        binding.root,
+                        getString(R.string.create_group_error_api_level),
+                        Snackbar.LENGTH_SHORT
+                    ).show()
+                }
             })
         binding.recyclerView.adapter = adapter
     }

@@ -33,6 +33,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <uses-library android:name="android.test.runner"
+            android:required="false" />
     </application>
 
 </manifest>
