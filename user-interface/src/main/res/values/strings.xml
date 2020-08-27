@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">User Interface</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="system_ui">System UI</string>
+    <string name="system_ui_status">System UI Status</string>
+    <string name="status_bar">Status Bar</string>
+    <string name="shown">Shown</string>
+    <string name="low_profile">Low Profile</string>
+    <string name="hidden">Hidden</string>
+    <string name="navigation_bar">Navigation Bar</string>
+    <string name="fullscreen">Fullscreen</string>
+    <string name="immersive_sticky">Immersive Sticky</string>
+    <string name="immersive">Immersive</string>
+    <string name="leanback">Leanback</string>
+    <string name="hide_navigation_bar">Hide Navigation Bar</string>
+    <string name="hide_status_bar">Hide Status Bar</string>
+    <string name="dim_status_bar">Dim Status Bar</string>
+    <string name="show_status_amp_navigation_bar"><![CDATA[Show Status & Navigation Bar]]></string>
+</resources>

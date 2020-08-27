@@ -1,3 +1,4 @@
+include ':user-interface'
 include ':animation-transition'
 include ':common'
 include ':connectivity-wifi'
