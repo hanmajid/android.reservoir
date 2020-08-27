@@ -13,7 +13,7 @@ Collection of various Android sample projects. Each project contains an example 
    - Wi-Fi P2P (Direct)
 2. User Interface
    - System UI
-     - Show, hide (immersive or not), & dim status bar
+     - Show, hide (immersive sticky or default (immersive)), & dim status bar
      - Show & hide (leanback, immersive, or immersive sticky) navigation bar
      - Fullscreen (leanback, immersive, or immersive sticky)
      - Listen to system UI visibility changes
