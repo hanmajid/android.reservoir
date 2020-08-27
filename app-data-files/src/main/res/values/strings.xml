@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">App Data and Files</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_provider">Content Provider</string>
+    <string name="home">Home</string>
+</resources>
